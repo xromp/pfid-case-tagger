@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "DPS Github Reporter",
+  "description": "This sample shows how to authorize Firebase in a Chrome extension using a Google account.",
+  "version": "2.1",
+  "icons": {
+    "128": "firebase-logo.png"
+  },
+  "browser_action": {
+    "default_icon": "firebase-logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/firebase/*/issues/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "web_accessible_resources": [
+    "templates/*",
+    "libs/*"
+  ],
+  "permissions": [
+    "identity",
+    "https://sheets.googleapis.com/*",
+    "https://docs.google.com/spreadsheets/"
+  ],
+  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
+  "oauth2": {
+    "client_id": "147018354613-7totq6mjp5378s9a9nuvdr1jr37qa0af.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/spreadsheets"
+
+    ]
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxAR0yXratET6JCcby8TlGAVfY2XWtPbvAVIco8qjy9Dg4cOEqr/hulrOP5bhvlvTlpPpZiCPNFYg6Nr575J2Sk6HtxZD4XvOR10SHs0F/MzeRVznmDrr6kKmdUPLaZLzXmyKPcMDRbIeEdpYh1wxqfcc5lS/vjOAQniUjLuMtU69nK1wR07jgnhNwY0FdXFgQZtCVsmc5ad7ks2PXDauwci3rPrP9p8wp+cPdK2fg41K7UUWLQGZyGs9A+yr6b6/uoOpiUz+E5iRx19wwXY6n1I/TA7yE5goCUU4IAsQSL2vewGv6vJ3aIi/96CyePz6bonx6TGkNA9OWXwr65rZgQIDAQAB"
+}
