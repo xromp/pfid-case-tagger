@@ -1,7 +1,7 @@
-const API_KEY = "AIzaSyAVfxRdgXyLK0WGXBPRqhkLPSyfYjeba-8";
-const SHEET_RANGE = 'Sheet1!A1:E10000000'
 const SHEET_ID = '1euDmuRjo2oUJ16SRfYFUXd46q2ll0O0rnuAEg6cfmn0';
+const SHEET_RANGE = 'Sheet1!A1:E10000000'
 const SHEET_API = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/`;
+const API_KEY = "AIzaSyAVfxRdgXyLK0WGXBPRqhkLPSyfYjeba-8";
 const SHEET_GET = SHEET_API + `${SHEET_RANGE}?key=${API_KEY}`;
 const SHEET_POST = SHEET_API + `${SHEET_RANGE}:append?key=${API_KEY}&valueInputOption=USER_ENTERED`;
 
@@ -103,9 +103,9 @@ async function updateEntry({id, entry}) {
 }
 
 function getToken() {
-    return new Promise((resolve, reject) => {
-        chrome.identity.getAuthToken({ 'interactive': true }, (token) => resolve(token));
-    })
+  return new Promise((resolve, reject) => {
+    chrome.identity.getAuthToken({ 'interactive': true }, (token) => resolve(token));
+  })
 }
 
 function sendRequest(url, {method, data, headerOptions}) {
@@ -113,15 +113,15 @@ function sendRequest(url, {method, data, headerOptions}) {
   const headers = new Headers({...headerOptions, 'Content-Type': 'application/json'});
     return new Promise((resolve, reject) => {
       fetch(
-          url,{
-            body,
-            method,
-            headers,
-          })
-          .then(response => response.json())
-          .then((response) => resolve(response))
-          .then((error) => {
-          reject(error);
-          });
+        url, {
+          body,
+          method,
+          headers,
+        })
+        .then(response => response.json())
+        .then((response) => resolve(response))
+        .then((error) => {
+        reject(error);
+        });
     })
 }
